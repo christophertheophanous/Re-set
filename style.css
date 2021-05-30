@@ -6,7 +6,7 @@ html, body {
 }
 
 @font-face {
-  src: url(Resetspacelowup-RomanGX.ttf);
+  src: url(MorphismewebanimatedGX.ttf);
   font-family: vf;
 }
 
@@ -30,6 +30,7 @@ canvas {
   line-height: 100px;
   font-family: abcfavorite;
   position: relative;
+  z-index: -1;
 }
 
 .text1 {
@@ -46,6 +47,7 @@ canvas {
   line-height: 1;
   font-family: abcfavoriteitalic;
   position: relative;
+  z-index: -1;
   
 }
 
@@ -62,6 +64,7 @@ canvas {
   line-height: 1;
   font-family: abcfavoriteitalic;
   position: relative;
+  z-index: -1;
 }
 
 .text3 {
@@ -83,7 +86,7 @@ canvas {
 
 .marquee3k {
   position: fixed;
-  bottom: 450px;
+  bottom: 400px;
   height: 0px;
   z-index: -1;
   font-variation-settings: "wght" 500;
@@ -118,18 +121,4 @@ canvas {
 
 
 
-.Gradient {
- position: fixed;
-  border: 0px solid;
-  bottom: 0px;
-  left: 0;
-  z-index: 1;
-}
 
-.Gradient1 {
- position: fixed;
-  border: 0px solid;
-  bottom: 0px;
-  right: 0;
-  z-index: 1;
-}
