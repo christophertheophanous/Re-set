@@ -11,4 +11,5 @@
 import Marquee3k from 'marquee3000'
 Marquee3k.init()
 
-console.log('Marquee3k')
+console.log('test')
+console.log(Marquee3k)
