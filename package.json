@@ -11,9 +11,12 @@
     "url": "git+https://github.com/christophertheophanous/Re-set.git"
   },
   "author": "Christopher Theophanous",
+  "glitch": {
+    "projectType": "generated_static"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/christophertheophanous/Re-set/issues"
   },
-  "homepage": "https://github.com/christophertheophanous/Re-set#readme"
+  "homepage": "https://github.com/christophertheophanous/Re-set#readme",
 }
