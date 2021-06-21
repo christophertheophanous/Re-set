@@ -1,0 +1,22 @@
+{
+  "name": "re-set",
+  "version": "1.0.0",
+  "description": "Practice-led framework for working with historical type",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christophertheophanous/Re-set.git"
+  },
+  "author": "Christopher Theophanous",
+  "glitch": {
+    "projectType": "generated_static"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/christophertheophanous/Re-set/issues"
+  },
+  "homepage": "https://github.com/christophertheophanous/Re-set#readme",
+}
