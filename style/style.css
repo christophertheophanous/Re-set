@@ -21,7 +21,9 @@ body {
     padding: 0;
     margin: 0;
     background-color: var(--background-color);
+    /*
     cursor: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2FCursor2.png?v=1624274133473) 4 12, auto;
+    */
 }
 
 
@@ -131,7 +133,7 @@ section {
 
 
 .text-scroller-1 {
-    font-size: 60vh;
+    font-size: 50vh;
     font-family: "ResetVariable";
     margin: 0;
 
