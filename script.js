@@ -8,5 +8,8 @@
   fullscreen(!fs);
 }*/
 
+import Marquee3k from 'marquee3000'
+Marquee3k.init()
 
-Marquee3k.init();
+console.log('test')
+console.log(Marquee3k)
