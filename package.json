@@ -4,6 +4,9 @@
   "description": "Practice-led framework for working with historical type",
   "main": "script.js",
   "scripts": {
+    "start": "vite --base=./",
+    "build": "vite build --base=./",
+    "serve": "vite preview --base=./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,4 +22,7 @@
     "url": "https://github.com/christophertheophanous/Re-set/issues"
   },
   "homepage": "https://github.com/christophertheophanous/Re-set#readme",
+  "dependencies": {
+    "vite": "^2.3.8"
+  }
 }
