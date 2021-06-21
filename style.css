@@ -1,0 +1,254 @@
+:root {
+  --background-color: #F5EFDE;
+  --accent-color: #339346;
+}
+
+html, body {
+  vertical-align: baseline;
+  background: transparent;
+  display: block;
+  scroll-behavior: smooth;
+  --scroll-behavior: smooth;
+
+  
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: var(--background-color);
+}
+
+
+
+@font-face {
+  src: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2Fdicktengleich_tryGX.ttf?v=1624267386679);
+  font-family: ResetVariable;
+}
+
+@font-face {
+  src: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2FMorphismewebanimationGX.ttf?v=1624267423536);
+  font-family: NeuesOrnamentVariable;
+}
+
+@font-face {
+  src: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2FABCFavoritMono-Regular-Trial.otf?v=1624267328264);
+  font-family: abcfavorite;
+}
+
+@font-face {
+  
+  src: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2FABCFavoritMono-RegularItalic-Trial.otf?v=1624267375169);
+  font-family: abcfavorite;
+  font-weight: italic;
+}
+
+.main-head {
+  background: var(--accent-color);
+  width: 100%;
+  height: 80vh
+}
+
+
+.external-link-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 5rem;
+  
+}
+
+.external-link {
+  font-size: 24px;
+  line-height: 100px;
+  font-family: abcfavorite;
+  color: var(--background-color);
+  margin-left: 4rem
+}
+
+
+.main-title {
+  padding: 10rem 0 0 5rem;
+  font-size: 450px;
+  line-height: 100px;
+  font-family: "ResetVariable";
+  color: var(--background-color);
+  font-variation-settings: "wght" 100;
+  transition: font-variation-settings 0.3s ease;
+}
+
+.main-title:hover {
+  font-variation-settings: "wght" 700;
+}
+
+nav {
+  padding: 2rem 0 5rem 0;
+  display: flex;
+  justify-content: center
+}
+
+.button {
+  font-family: 'abcfavorite';
+  background: var(--accent-color);
+  border-radius: 35px;
+  padding: 10px 20px;
+  color: #fff;
+  font-size: 1.45em;
+  margin: 0 15px;
+  bottom: 40px;
+  left: 50px;
+}
+
+
+.text-subline {
+  font-size: 24px;
+  font-family: abcfavorite;
+  color: var(--accent-color);
+  padding-left: 83px;
+  padding-top: 1rem;
+  width: 100%
+}
+
+.text-scroller {
+  max-width: 100vw;
+  overflow-x: hidden;
+  line-height: 1.2;
+  margin: 0;
+  z-index: -1;
+  color: var(--accent-color);
+}
+.text-scroller p {
+  margin: 0;
+}
+
+
+.text-scroller-1 {
+  font-size: 625px;
+  font-family: "ResetVariable";
+  margin: 0;
+
+}
+
+
+.text-scroller-2 {
+  font-size: 625px;
+  font-family: "NeuesOrnamentVariable";
+  margin: 0;
+
+}
+
+
+
+
+@keyframes marquee3k {
+  from {
+    font-variation-settings: "wght" 100;
+  }
+  to {
+    font-variation-settings: "wght" 700;
+  }
+}
+
+.marquee3k {
+  transition: font-variation-settings 0.5s ease;
+  animation-name: marquee3k;
+  animation-duration: 2s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+ .alternates1 {
+    -moz-font-feature-settings: "ss01";
+  -webkit-font-feature-settings: "ss01";
+  font-feature-settings: "ss01";
+  }
+
+.alternates2 {
+    -moz-font-feature-settings: "ss02";
+  -webkit-font-feature-settings: "ss02";
+  font-feature-settings: "ss02";
+  }
+
+.alternatesabc {
+    -moz-font-feature-settings: "ss04";
+  -webkit-font-feature-settings: "ss04";
+  font-feature-settings: "ss04";
+  }
+
+.www {
+  font-variant-ligatures: discretionary-ligatures;
+  -moz-font-feature-settings: "dlig";
+  -webkit-font-feature-settings: "dlig";
+  font-feature-settings: "dlig";
+}
+
+
+.overview-wrapper {
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+
+#Overview1 {
+  font-size: 175px;
+  font-family: ResetVariable;
+  left: 83px;
+  bottom: -2690px;
+  margin: 0;
+  width: 3080px;
+  color: var(--accent-color);
+  font-variation-settings: "wght" 250;
+  overflow: hidden;
+}
+
+#Overview2 {
+  font-size: 370px;
+  font-family: ResetVariable;
+
+  left: 83px;
+  bottom: -2440px;
+  margin: 0;
+  width: 3080px;
+  color: var(--accent-color);
+  font-variation-settings: "wght" 550;
+  overflow: hidden;
+}
+
+#Overview3 {
+  font-size: 210px;
+  font-family: ResetVariable;
+  left: 83px;
+  bottom: -1990px;
+  margin: 0;
+  width: 3080px;
+  color: var(--accent-color);
+  font-variation-settings: "wght" 100;
+  overflow: hidden;
+}
+
+#Specimen_Regular {
+  font-size: 63px;
+  font-family: ResetVariable;
+  color: var(--accent-color);
+  overflow: visible;
+  line-height: 1;
+
+  bottom: 375px;
+  margin: 0;
+  bottom: -3035px;
+  left: 83px;
+  z-index: -1;
+  font-variation-settings: "wght" 400;
+}
+
+
+
+.footer {
+  background: var(--accent-color);
+  font-size: 100px;
+  font-family: ResetVariable;
+  color: var(--background-color);
+}
