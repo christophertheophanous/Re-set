@@ -14,7 +14,4 @@ Marquee3k.init({
         selector: 'marquee3k', // define a custom classname
     });
 
-console.log('test')
-console.log(Marquee3k)
-
 Marquee3k.refreshAll();
