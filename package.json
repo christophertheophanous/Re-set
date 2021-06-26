@@ -4,8 +4,8 @@
   "description": "Practice-led framework for working with historical type",
   "main": "script.js",
   "scripts": {
-    "start": "vite --base=./",
-    "build": "vite build --base=./",
+    "start": "vite",
+    "build": "vite build",
     "serve": "vite preview --base=./",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,7 @@
   "glitch": {
     "projectType": "generated_static"
   },
-  "license": "ISC",
+  "license": "all rights are reserved",
   "bugs": {
     "url": "https://github.com/christophertheophanous/Re-set/issues"
   },
@@ -26,7 +26,10 @@
     "node": "14.x"
   },
   "dependencies": {
+    "jzz": "^1.3.5",
     "marquee3000": "^1.1.1",
+    "smoothscroll-anchor-polyfill": "^1.3.2",
+    "smoothscroll-polyfill": "^0.4.4",
     "vite": "^2.3.8"
   }
 }
