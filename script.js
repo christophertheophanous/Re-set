@@ -11,22 +11,49 @@ smoothscroll.polyfill();
 Marquee3k.init({ selector: "marquee3k" });
 // Marquee3k.refreshAll();
 
+
+const wrongBrowserPopup = document.getElementById("wrong-browser");
+
+const currentBrowser = getBrowser()
+console.log('detected: ' + currentBrowser)
+
+if (currentBrowser === 'Safari') {
+  wrongBrowserPopup.classList.add("wrong-browser-hidden")
+}
+
+
+
+
+
+
+
+
+// Styles Section --> makes slider interactive
+
 const styleSliderSizes = ["thin", "light", "regular", "medium", "bold"];
+const defaultSize = 68;
 
 function styleSliderFactory(size) {
   const stylesSlider = document.getElementById(`styles-slider-${size}`);
+  const stylesSliderOutput = document.getElementById(
+    `styles-slider-${size}-text`
+  );
 
-  stylesSlider.value = 68;
+  stylesSlider.value = defaultSize;
+  stylesSliderOutput.innerHTML = "68px";
 
   stylesSlider.oninput = function(event) {
     const sliderValue = event.currentTarget.value;
     console.log(sliderValue);
-    document.documentElement.style.setProperty(`--styles-size-${size}`, `${sliderValue}px`);
+    document.documentElement.style.setProperty(
+      `--styles-size-${size}`,
+      `${sliderValue}px`
+    );
+    stylesSliderOutput.innerHTML = `${sliderValue}px`;
   };
 }
 
-styleSliderSizes.forEach(size => styleSliderFactory(size))
-
+styleSliderSizes.forEach(size => styleSliderFactory(size));
 
 // WebMidi Stuff
 
@@ -58,3 +85,30 @@ JZZ()
   .wait(10000)
   .close();
 */
+
+
+
+// Test Browser
+
+function getBrowser() {
+  if (
+    (navigator.userAgent.indexOf("Opera") ||
+      navigator.userAgent.indexOf("OPR")) != -1
+  ) {
+    return 'Opera'
+  } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    return 'Chrome'
+  } else if (navigator.userAgent.indexOf("Safari") != -1) {
+    return 'Safari'
+  } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+    return 'Firefox'
+  } else if (
+    navigator.userAgent.indexOf("MSIE") != -1 ||
+    !!document.documentMode == true
+  ) {
+    //IF IE > 10
+    return 'IE'
+  } else {
+    return 'unknown'
+  }
+}

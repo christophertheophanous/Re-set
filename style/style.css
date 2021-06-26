@@ -294,3 +294,21 @@ section {
     font-family: ResetVariable;
     color: var(--background-color);
 }
+
+.wrong-browser {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: white;
+  z-index: 10000000;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+.wrong-browser-hidden {
+  display: none;
+}
+
+#wrong-browser img {
+  width: 80%
+}
