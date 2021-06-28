@@ -107,15 +107,16 @@ socket.on('message', function(obj) {
   const thisValue = obj[1]
 
   // const differenz = calcDiff(lastValue, thisValue)
-  const differenz = thisValue - lastValue
-  const ausschlag = 50 + (differenz * 3)
+  //const differenz = thisValue - lastValue
+  //const ausschlag = 50 + (differenz * 3)
 
   // const softVal = (thisValue + lastValue) / 2
-  const normalizeMessage = rangeMap(ausschlag, 20, 90, 100,700)
+  const roundValue = Math.round(thisValue * 100) / 100
+  const normalizeMessage = rangeMap(roundValue, 0, 1, 100,700)
 
-  console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
+  //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
-  // console.log(obj[1] + ' -> ' + normalizeMessage,thisValue, lastValue, softVal)
+  console.log(thisValue + ' -> ' + normalizeMessage)
   // console.log(neueOrnamentScroller)
   resetVariableScroller.style.fontWeight = normalizeMessage
   neueOrnamentScroller.style.fontWeight = normalizeMessage
