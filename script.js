@@ -12,7 +12,7 @@ smoothscroll.polyfill();
 
 // Wir warten darauf, dass das dokument vollständig geladen ist:
 window.addEventListener("load", function() {
-  
+
   // Wir warten bis die Font geladen ist. Dann starten wir den Marquee. Ansonsten ist die breite falsch berechnet
   document.fonts.ready.then(function() {
     Marquee3k.init({ selector: "marquee3k" });
@@ -25,7 +25,7 @@ setTimeout(function() {
 }, 3000);
 
 
-//Popup für 
+//Popup für
 
 const wrongBrowserPopup = document.getElementById("wrong-browser");
 
@@ -64,6 +64,34 @@ function styleSliderFactory(size) {
 
 styleSliderSizes.forEach(size => styleSliderFactory(size));
 
+// OSC Stuff
+
+localStorage.debug = '*';
+
+var socket = io('127.0.0.1:3000');
+socket.on('connect', function() {
+  // sends to socket.io server the host/port of oscServer
+  // and oscClient
+  socket.emit('config',
+      {
+        server: {
+          port: 3333,
+          host: '54.237.99.130'
+        },
+        client: {
+          port: 3334,
+          host: '54.237.99.130'
+        }
+      }
+  );
+});
+
+socket.on('message', function(obj) {
+  const status = document.getElementById("log");
+  const newContent = document.createTextNode(obj + '\n\r')
+  status.appendChild(newContent);
+  console.log('Message: ', obj);
+});
 
 
 
@@ -128,8 +156,8 @@ JZZ()
   .connect(function(msg) {
     console.log(msg.toString())
   console.log(msg)
-  
-  
+
+
   })
 
   .wait(10000)
