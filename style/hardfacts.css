@@ -1,0 +1,142 @@
+.container {
+  display: grid;
+  margin: 0 0 0 0;
+}
+
+.container {
+  grid-template-columns: 83px 180px 24px 1fr 24px 180px 24px auto 24px;
+  grid-template-rows: 55px 55px 1px 110px 55px 55px 55px 55px;
+}
+
+.item-50 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  align-self: center;
+}
+
+
+.item-50 {
+  font-size: 24px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+
+.item-51 {
+  grid-column-start: 2;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 4;
+  align-self: center;
+}
+
+
+.item-51 {
+  font-size: 18px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+
+.item-52 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  align-self: center;
+}
+
+
+.item-52 {
+  font-size: 18px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+
+.item-53 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 6;
+  align-self: center;
+}
+
+
+.item-53 {
+  font-size: 18px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+
+.item-54 {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 4;
+  align-self: center;
+}
+
+
+.item-54 {
+  font-size: 18px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+
+.item-55 {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 5;
+  grid-row-end: 5;
+  align-self: center;
+}
+
+
+.item-55 {
+  font-size: 18px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+
+.item-56 {
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 6;
+  grid-row-end: 6;
+  align-self: center;
+}
+
+
+.item-56 {
+  font-size: 18px;
+  font-family: "ABCMonoRegular";
+  margin: 0;
+  color: var(--accent-color);
+}
+
+.line-long-last {
+  grid-row-start: 3;
+  grid-column-start: 1;
+  grid-column-end: 10;
+  align-self: end stretch;
+  height: 1px;
+  background: #339346;
+}
+
+
+
+
+
+
