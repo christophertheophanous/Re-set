@@ -66,9 +66,10 @@ styleSliderSizes.forEach(size => styleSliderFactory(size));
 
 // OSC Stuff
 
-localStorage.debug = '*';
+localStorage.debug = false;
+// '*';
 
-var socket = io('127.0.0.1:3000');
+var socket = io('127.0.0.1:3030');
 socket.on('connect', function() {
   // sends to socket.io server the host/port of oscServer
   // and oscClient
@@ -88,15 +89,47 @@ socket.on('connect', function() {
 
 const status = document.getElementById("log");
 
+// Animate: "wght" 100 - 700
+
+const resetVariableScroller = document.getElementById('reset-variable-scroller')
+const neueOrnamentScroller = document.getElementById('neue-ornament-scroller')
+
+let lastValue = 50;
+
 socket.on('message', function(obj) {
-  const status = document.getElementById("log");
+  /*const status = document.getElementById("log");
   const newPtag = document.createElement('p')
   const newContent = document.createTextNode(obj + '\n\r')
   newPtag.appendChild(newContent);
-  status.insertBefore(newPtag, status.firstChild);
-  console.log('Message: ', obj[0], obj);
+  status.insertBefore(newPtag, status.firstChild);*/
+  // console.log('Message: ', obj[0], obj);
+
+  const thisValue = obj[1]
+
+  // const differenz = calcDiff(lastValue, thisValue)
+  const differenz = thisValue - lastValue
+  const ausschlag = 50 + (differenz * 3)
+
+  // const softVal = (thisValue + lastValue) / 2
+  const normalizeMessage = rangeMap(ausschlag, 20, 90, 100,700)
+
+  console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
+
+  // console.log(obj[1] + ' -> ' + normalizeMessage,thisValue, lastValue, softVal)
+  // console.log(neueOrnamentScroller)
+  resetVariableScroller.style.fontWeight = normalizeMessage
+  neueOrnamentScroller.style.fontWeight = normalizeMessage
+
+  lastValue = thisValue
 });
 
+
+
+////////// HELPER FUNCTION ////////
+
+const rangeMap = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+
+const calcDiff =  (a, b) => a > b ? a - b : b - a
 
 
 // Get current Browser:
