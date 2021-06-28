@@ -76,21 +76,25 @@ socket.on('connect', function() {
       {
         server: {
           port: 3333,
-          host: '54.237.99.130'
+          host: '127.0.0.1'
         },
         client: {
           port: 3334,
-          host: '54.237.99.130'
+          host: '127.0.0.1'
         }
       }
   );
 });
 
+const status = document.getElementById("log");
+
 socket.on('message', function(obj) {
   const status = document.getElementById("log");
+  const newPtag = document.createElement('p')
   const newContent = document.createTextNode(obj + '\n\r')
-  status.appendChild(newContent);
-  console.log('Message: ', obj);
+  newPtag.appendChild(newContent);
+  status.insertBefore(newPtag, status.firstChild);
+  console.log('Message: ', obj[0], obj);
 });
 
 
