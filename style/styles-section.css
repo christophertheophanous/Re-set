@@ -116,8 +116,20 @@
 .styles-letter {
   padding: 1rem 0;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
+
+input,
+textarea,
+[contenteditable] {
+  caret-color: var(--accent-color);
+}
+
+.styles-letter::selection {
+  background: var(--accent-color);
+  color: var(--background-color);
+}
+
 
 .styles-letter::-webkit-scrollbar {
     -webkit-appearance: none;

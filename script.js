@@ -3,29 +3,38 @@ import "smoothscroll-anchor-polyfill";
 import Marquee3k from "marquee3000";
 // import * as JZZ from "jzz";
 
+
 // Smoothscroll für Safari
 smoothscroll.polyfill();
 
+
 // Initialize Marquee scroller
 
-Marquee3k.init({ selector: "marquee3k" });
-// Marquee3k.refreshAll();
+// Wir warten darauf, dass das dokument vollständig geladen ist:
+window.addEventListener("load", function() {
+  
+  // Wir warten bis die Font geladen ist. Dann starten wir den Marquee. Ansonsten ist die breite falsch berechnet
+  document.fonts.ready.then(function() {
+    Marquee3k.init({ selector: "marquee3k" });
+  });
+});
 
+// Zur sicherheit laden wir nach drei sekunden den Marquee nochmal neu falls sich was verschoben hat:
+setTimeout(function() {
+  Marquee3k.refreshAll();
+}, 3000);
+
+
+//Popup für 
 
 const wrongBrowserPopup = document.getElementById("wrong-browser");
 
-const currentBrowser = getBrowser()
-console.log('detected: ' + currentBrowser)
+const currentBrowser = getBrowser();
+console.log("detected: " + currentBrowser);
 
-if (currentBrowser === 'Safari') {
-  wrongBrowserPopup.classList.add("wrong-browser-hidden")
+if (currentBrowser != "Safari") {
+  wrongBrowserPopup.classList.remove("wrong-browser-hidden");
 }
-
-
-
-
-
-
 
 
 // Styles Section --> makes slider interactive
@@ -54,6 +63,47 @@ function styleSliderFactory(size) {
 }
 
 styleSliderSizes.forEach(size => styleSliderFactory(size));
+
+
+
+
+// Get current Browser:
+
+function getBrowser() {
+  if (
+    (navigator.userAgent.indexOf("Opera") ||
+      navigator.userAgent.indexOf("OPR")) != -1
+  ) {
+    return "Opera";
+  } else if (navigator.userAgent.indexOf("Chrome") != -1) {
+    return "Chrome";
+  } else if (navigator.userAgent.indexOf("Safari") != -1) {
+    return "Safari";
+  } else if (navigator.userAgent.indexOf("Firefox") != -1) {
+    return "Firefox";
+  } else if (
+    navigator.userAgent.indexOf("MSIE") != -1 ||
+    !!document.documentMode == true
+  ) {
+    //IF IE > 10
+    return "IE";
+  } else {
+    return "unknown";
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // WebMidi Stuff
 
@@ -86,29 +136,4 @@ JZZ()
   .close();
 */
 
-
-
 // Test Browser
-
-function getBrowser() {
-  if (
-    (navigator.userAgent.indexOf("Opera") ||
-      navigator.userAgent.indexOf("OPR")) != -1
-  ) {
-    return 'Opera'
-  } else if (navigator.userAgent.indexOf("Chrome") != -1) {
-    return 'Chrome'
-  } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    return 'Safari'
-  } else if (navigator.userAgent.indexOf("Firefox") != -1) {
-    return 'Firefox'
-  } else if (
-    navigator.userAgent.indexOf("MSIE") != -1 ||
-    !!document.documentMode == true
-  ) {
-    //IF IE > 10
-    return 'IE'
-  } else {
-    return 'unknown'
-  }
-}

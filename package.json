@@ -4,10 +4,10 @@
   "description": "Practice-led framework for working with historical type",
   "main": "script.js",
   "scripts": {
-    "start": "vite",
+    "start": "vite --host",
+    "dev": "vite --host",
     "build": "vite build",
-    "serve": "vite preview --base=./",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,8 @@
   },
   "author": "Christopher Theophanous",
   "glitch": {
-    "projectType": "generated_static"
+    "projectType": "generated_static",
+    "buildDirectory": "build"
   },
   "license": "all rights are reserved",
   "bugs": {

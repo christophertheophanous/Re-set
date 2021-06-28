@@ -42,7 +42,7 @@ body {
 }
 
 @font-face {
-    src: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2FMorphismewebanimationGX-subset.zopfli.woff?v=1624662088435) format('woff');
+    src: url(https://cdn.glitch.com/265b7941-2630-4835-88f5-953b961fa1b3%2FMorphismeGX.ttf?v=1624891316894);
     font-family: NeuesOrnamentVariable;
 }
 
@@ -62,12 +62,12 @@ body {
   outline: 0px solid transparent;
 }
 
+
 .main-head {
     background: var(--accent-color);
     width: 100%;
-    height: 80vh
+    height: 80vh;
 }
-
 
 .external-link-bar {
     display: flex;
@@ -86,17 +86,18 @@ body {
 
 
 .main-title {
-    padding: 10rem 0 0 0;
     font-size: 450px;
-    line-height: 100px;
+    line-height: 1;
     font-family: "ResetVariable";
     color: var(--background-color);
     font-variation-settings: "wght" 100;
-    transition: font-variation-settings 0.3s ease;
     text-align: center;
 }
+.main-title span {
+  transition: font-variation-settings 0.3s ease;
+}
 
-.main-title:hover {
+.main-title span:hover {
     font-variation-settings: "wght" 700;
 }
 
