@@ -122,6 +122,7 @@ socket.on('message', function(obj) {
   neueOrnamentScroller.style.fontWeight = normalizeMessage
 
   lastValue = thisValue
+  Marquee3k.refreshAll();
 });
 
 
