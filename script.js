@@ -132,7 +132,7 @@ socket.on("message", function(obj) {
 
   //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
-  // console.log(thisValue + " -> " + normalizeMessage);
+  console.log(thisValue + " -> " + normalizeMessage);
 
 
 
