@@ -3,7 +3,7 @@
     --background-color: #F5EFDE;
     --accent-color: #339346;
     --overview-size: 44px;
-  
+
     --styles-size-thin: 68px;
     --styles-size-light: 68px;
     --styles-size-regular: 68px;
@@ -172,14 +172,14 @@ section {
 }
 
 
-@keyframes marquee3k {
+/*@keyframes marquee3k {
     from {
         font-variation-settings: "wght" 100;
     }
     to {
         font-variation-settings: "wght" 700;
     }
-}
+}*/
 
 .marquee3k {
     transition: font-variation-settings 0.5s ease;
