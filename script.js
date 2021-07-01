@@ -16,26 +16,24 @@ window.addEventListener("load", function() {
   // Wir warten bis die Font geladen ist. Dann starten wir den Marquee. Ansonsten ist die breite falsch berechnet
   document.fonts.ready.then(function() {
     Marquee3k.init({ selector: "marquee3k" });
+
+    // Zur sicherheit laden wir nach drei sekunden den Marquee nochmal neu falls sich was verschoben hat:
+    setTimeout(function() {
+      Marquee3k.refreshAll();
+    }, 3000);
   });
 });
 
-// Zur sicherheit laden wir nach drei sekunden den Marquee nochmal neu falls sich was verschoben hat:
-setTimeout(function() {
-  Marquee3k.refreshAll();
-}, 3000);
-
-
-//Popup für
+//Popup für Chrome/Firefox ua.
 
 const wrongBrowserPopup = document.getElementById("wrong-browser");
 
-const currentBrowser = getBrowser();
+const currentBrowser = getcurrentBrowser();
 console.log("detected: " + currentBrowser);
 
 if (currentBrowser != "Safari") {
   wrongBrowserPopup.classList.remove("wrong-browser-hidden");
 }
-
 
 // Styles Section --> makes slider interactive
 
@@ -64,39 +62,42 @@ function styleSliderFactory(size) {
 
 styleSliderSizes.forEach(size => styleSliderFactory(size));
 
+
+
+
 // OSC Stuff
 
 localStorage.debug = false;
 // '*';
 
-var socket = io('127.0.0.1:3030');
-socket.on('connect', function() {
+var socket = io("127.0.0.1:3030");
+socket.on("connect", function() {
   // sends to socket.io server the host/port of oscServer
   // and oscClient
-  socket.emit('config',
-      {
-        server: {
-          port: 3333,
-          host: '127.0.0.1'
-        },
-        client: {
-          port: 3334,
-          host: '127.0.0.1'
-        }
-      }
-  );
+  socket.emit("config", {
+    server: {
+      port: 3333,
+      host: "127.0.0.1"
+    },
+    client: {
+      port: 3334,
+      host: "127.0.0.1"
+    }
+  });
 });
 
 const status = document.getElementById("log");
 
 // Animate: "wght" 100 - 700
 
-const resetVariableScroller = document.getElementById('reset-variable-scroller')
-const neueOrnamentScroller = document.getElementById('neue-ornament-scroller')
+const resetVariableScroller = document.getElementById(
+  "reset-variable-scroller"
+);
+const neueOrnamentScroller = document.getElementById("neue-ornament-scroller");
 
 let lastValue = 50;
 
-socket.on('message', function(obj) {
+socket.on("message", function(obj) {
   /*const status = document.getElementById("log");
   const newPtag = document.createElement('p')
   const newContent = document.createTextNode(obj + '\n\r')
@@ -104,39 +105,37 @@ socket.on('message', function(obj) {
   status.insertBefore(newPtag, status.firstChild);*/
   // console.log('Message: ', obj[0], obj);
 
-  const thisValue = obj[1]
+  const thisValue = obj[1];
 
   // const differenz = calcDiff(lastValue, thisValue)
   //const differenz = thisValue - lastValue
   //const ausschlag = 50 + (differenz * 3)
 
   // const softVal = (thisValue + lastValue) / 2
-  const roundValue = Math.round(thisValue * 100) / 100
-  const normalizeMessage = rangeMap(roundValue, 0, 1, 100,700)
+  const roundValue = Math.round(thisValue * 100) / 100;
+  const normalizeMessage = rangeMap(roundValue, 0, 1, 100, 700);
 
   //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
-  console.log(thisValue + ' -> ' + normalizeMessage)
+  console.log(thisValue + " -> " + normalizeMessage);
   // console.log(neueOrnamentScroller)
-  resetVariableScroller.style.fontWeight = normalizeMessage
-  neueOrnamentScroller.style.fontWeight = normalizeMessage
+  resetVariableScroller.style.fontWeight = normalizeMessage;
+  neueOrnamentScroller.style.fontWeight = normalizeMessage;
 
-  lastValue = thisValue
+  lastValue = thisValue;
   // Marquee3k.refreshAll();
 });
 
-
-
 ////////// HELPER FUNCTION ////////
 
-const rangeMap = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
+const rangeMap = (value, x1, y1, x2, y2) =>
+  ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
 
-const calcDiff =  (a, b) => a > b ? a - b : b - a
-
+const calcDiff = (a, b) => (a > b ? a - b : b - a);
 
 // Get current Browser:
 
-function getBrowser() {
+function getcurrentBrowser() {
   if (
     (navigator.userAgent.indexOf("Opera") ||
       navigator.userAgent.indexOf("OPR")) != -1
@@ -158,19 +157,6 @@ function getBrowser() {
     return "unknown";
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // WebMidi Stuff
 
