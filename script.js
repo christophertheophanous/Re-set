@@ -110,6 +110,8 @@ function removeFontWeightAnimation () {
 
 let lastValue = 50;
 
+addFontWeightAnimation()
+
 socket.on("message", function(obj) {
   /*const status = document.getElementById("log");
   const newPtag = document.createElement('p')
