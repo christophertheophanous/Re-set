@@ -3,14 +3,17 @@ import "smoothscroll-anchor-polyfill";
 import Marquee3k from "marquee3000";
 // import * as JZZ from "jzz";
 
+
 // Smoothscroll für Safari
 smoothscroll.polyfill();
+
 
 // Initialize Marquee scroller
 
 // Wir warten darauf, dass das dokument vollständig geladen ist:
 window.addEventListener("load", function() {
-  // Wir warten bis die Font geladen ist. Dann starten wir den Marquee. Ansonsten wird die breite falsch berechnet
+
+  // Wir warten bis die Font geladen ist. Dann starten wir den Marquee. Ansonsten ist die breite falsch berechnet
   document.fonts.ready.then(function() {
     Marquee3k.init({ selector: "marquee3k" });
 
@@ -28,7 +31,7 @@ const wrongBrowserPopup = document.getElementById("wrong-browser");
 const currentBrowser = getcurrentBrowser();
 console.log("detected: " + currentBrowser);
 
-if (currentBrowser != "Safari") {
+if (currentBrowser !== "Safari") {
   wrongBrowserPopup.classList.remove("wrong-browser-hidden");
 }
 
@@ -83,16 +86,31 @@ socket.on("connect", function() {
   });
 });
 
-const status = document.getElementById("log");
+// const status = document.getElementById("log");
 
 // Animate: "wght" 100 - 700
 
-const resetVariableScroller = document.getElementById(
-  "reset-variable-scroller"
-);
+let connectedToSocket = false
+
+const resetVariableScroller = document.getElementById("reset-variable-scroller");
 const neueOrnamentScroller = document.getElementById("neue-ornament-scroller");
 
+function addFontWeightAnimation () {
+  resetVariableScroller.style.animationName = 'animateFontWeight'
+  neueOrnamentScroller.style.animationName = 'animateFontWeight'
+  console.log('add pulsing font Animation')
+}
+
+function removeFontWeightAnimation () {
+  resetVariableScroller.style.animationName = ''
+  neueOrnamentScroller.style.animationName = ''
+  console.log('remove pulsing font Animation')
+}
+
+
 let lastValue = 50;
+
+addFontWeightAnimation()
 
 socket.on("message", function(obj) {
   /*const status = document.getElementById("log");
@@ -115,13 +133,25 @@ socket.on("message", function(obj) {
   //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
   console.log(thisValue + " -> " + normalizeMessage);
-  // console.log(neueOrnamentScroller)
+
+
+
+  if(!connectedToSocket) { removeFontWeightAnimation() }
+  console.log('Connected To Socket', obj)
+
   resetVariableScroller.style.fontWeight = normalizeMessage;
   neueOrnamentScroller.style.fontWeight = normalizeMessage;
 
   lastValue = thisValue;
+  connectedToSocket = true
   // Marquee3k.refreshAll();
 });
+
+socket.on("disconnect", function(obj) {
+  connectedToSocket = false
+  console.log('LOST connection to socket')
+  addFontWeightAnimation()
+})
 
 ////////// HELPER FUNCTION ////////
 
