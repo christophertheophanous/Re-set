@@ -108,7 +108,7 @@ function removeFontWeightAnimation () {
 }
 
 
-let lastValue = 50;
+// let lastValue = 50;
 
 addFontWeightAnimation()
 
@@ -139,12 +139,17 @@ socket.on("message", function(obj) {
   if(!connectedToSocket) { removeFontWeightAnimation() }
   // console.log('Connected To Socket', obj)
 
-  resetVariableScroller.style.fontWeight = normalizeMessage;
-  neueOrnamentScroller.style.fontWeight = normalizeMessage;
+  function animateFontWeight() {
+    resetVariableScroller.style.fontWeight = normalizeMessage;
+    neueOrnamentScroller.style.fontWeight = normalizeMessage;
+  }
 
-  lastValue = thisValue;
+  requestAnimationFrame(animateFontWeight)
+
+
+  // lastValue = thisValue;
   connectedToSocket = true
-  // Marquee3k.refreshAll();
+  //Marquee3k.refreshAll();
 });
 
 socket.on("disconnect", function(obj) {
