@@ -9,6 +9,7 @@
     --styles-size-regular: 68px;
     --styles-size-medium: 68px;
     --styles-size-bold: 68px;
+    box-sizing: border-box;
 }
 
 html, body {
@@ -123,16 +124,18 @@ nav {
 
 
 section {
-    height: 100vh;
+    min-height: 100vh;
     margin-bottom: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .text-subline {
     font-size: 24px;
     font-family: abcfavorite;
     color: var(--accent-color);
-    padding-left: 83px;
-    padding-top: 1rem;
+    padding: 1rem 0 1rem 83px;
     max-width: 100%
 }
 
@@ -144,6 +147,7 @@ section {
 .text-scroller {
     width: 100vw;
     overflow-x: hidden;
+    overflow-y: visible;
     line-height: 1.2;
     margin: 0;
     z-index: -1;
