@@ -87,7 +87,7 @@ body {
 
 
 .main-title {
-    font-size: 450px;
+    font-size: 36vw;
     line-height: 1;
     font-family: "ResetVariable";
     color: var(--background-color);
