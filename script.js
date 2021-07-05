@@ -132,12 +132,12 @@ socket.on("message", function(obj) {
 
   //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
-  console.log(thisValue + " -> " + normalizeMessage);
+  // console.log(thisValue + " -> " + normalizeMessage);
 
 
 
   if(!connectedToSocket) { removeFontWeightAnimation() }
-  console.log('Connected To Socket', obj)
+  // console.log('Connected To Socket', obj)
 
   resetVariableScroller.style.fontWeight = normalizeMessage;
   neueOrnamentScroller.style.fontWeight = normalizeMessage;
