@@ -33,6 +33,9 @@ console.log("detected: " + currentBrowser);
 
 if (currentBrowser !== "Safari") {
   wrongBrowserPopup.classList.remove("wrong-browser-hidden");
+  setTimeout(function(){ 
+    wrongBrowserPopup.classList.add("wrong-browser-hidden"); 
+  }, 20000);
 }
 
 // Styles Section --> makes slider interactive
@@ -60,7 +63,9 @@ function styleSliderFactory(size) {
   };
 }
 
+try {
 styleSliderSizes.forEach(size => styleSliderFactory(size));
+} catch (e){}
 
 
 
@@ -96,19 +101,23 @@ const resetVariableScroller = document.getElementById("reset-variable-scroller")
 const neueOrnamentScroller = document.getElementById("neue-ornament-scroller");
 
 function addFontWeightAnimation () {
+  try {
   resetVariableScroller.style.animationName = 'animateFontWeight'
   neueOrnamentScroller.style.animationName = 'animateFontWeight'
   console.log('add pulsing font Animation')
+  } catch(e){}
 }
 
 function removeFontWeightAnimation () {
+  try {
   resetVariableScroller.style.animationName = ''
   neueOrnamentScroller.style.animationName = ''
   console.log('remove pulsing font Animation')
+  } catch(e){}
 }
 
 
-let lastValue = 50;
+// let lastValue = 50;
 
 addFontWeightAnimation()
 
@@ -139,12 +148,22 @@ socket.on("message", function(obj) {
   if(!connectedToSocket) { removeFontWeightAnimation() }
   // console.log('Connected To Socket', obj)
 
-  resetVariableScroller.style.fontWeight = normalizeMessage;
-  neueOrnamentScroller.style.fontWeight = normalizeMessage;
+  function animateFontWeight() {
+    try{
+    resetVariableScroller.style.fontWeight = normalizeMessage;
+    }catch(e){}
+    try{
+    neueOrnamentScroller.style.fontWeight = normalizeMessage;
+    }catch(e){}
+  }
 
-  lastValue = thisValue;
+  // requestAnimationFrame(animateFontWeight)
+  animateFontWeight()
+
+
+  // lastValue = thisValue;
   connectedToSocket = true
-  // Marquee3k.refreshAll();
+  //Marquee3k.refreshAll();
 });
 
 socket.on("disconnect", function(obj) {
