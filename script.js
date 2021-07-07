@@ -106,6 +106,8 @@ function addFontWeightAnimation() {
     resetVariableScroller.style.animationName = 'animateFontWeight'
     neueOrnamentScroller.style.animationName = 'animateFontWeight'
     console.log('add pulsing font Animation')
+    resetVariableScroller.style.willChange = 'auto';
+    neueOrnamentScroller.style.willChange = 'auto';
   } catch (e) {
   }
 }
@@ -115,6 +117,8 @@ function removeFontWeightAnimation() {
     resetVariableScroller.style.animationName = ''
     neueOrnamentScroller.style.animationName = ''
     console.log('remove pulsing font Animation')
+    resetVariableScroller.style.willChange = 'transform, font-weight';
+    neueOrnamentScroller.style.willChange = 'transform, font-weight';
   } catch (e) {
   }
 }
