@@ -32,7 +32,12 @@ const currentBrowser = getcurrentBrowser();
 console.log("detected: " + currentBrowser);
 
 if (currentBrowser !== "Safari") {
+  try {
   wrongBrowserPopup.classList.remove("wrong-browser-hidden");
+  setTimeout(function(){
+    wrongBrowserPopup.classList.add("wrong-browser-hidden");
+  }, 10000);
+  } catch (e){}
 }
 
 // Styles Section --> makes slider interactive
@@ -60,7 +65,9 @@ function styleSliderFactory(size) {
   };
 }
 
+try {
 styleSliderSizes.forEach(size => styleSliderFactory(size));
+} catch (e){}
 
 
 
@@ -96,29 +103,27 @@ const resetVariableScroller = document.getElementById("reset-variable-scroller")
 const neueOrnamentScroller = document.getElementById("neue-ornament-scroller");
 
 function addFontWeightAnimation () {
+  try {
   resetVariableScroller.style.animationName = 'animateFontWeight'
   neueOrnamentScroller.style.animationName = 'animateFontWeight'
   console.log('add pulsing font Animation')
+  } catch(e){}
 }
 
 function removeFontWeightAnimation () {
+  try {
   resetVariableScroller.style.animationName = ''
   neueOrnamentScroller.style.animationName = ''
   console.log('remove pulsing font Animation')
+  } catch(e){}
 }
 
 
-// let lastValue = 50;
+let fontWeightValue
 
 addFontWeightAnimation()
 
 socket.on("message", function(obj) {
-  /*const status = document.getElementById("log");
-  const newPtag = document.createElement('p')
-  const newContent = document.createTextNode(obj + '\n\r')
-  newPtag.appendChild(newContent);
-  status.insertBefore(newPtag, status.firstChild);*/
-  // console.log('Message: ', obj[0], obj);
 
   const thisValue = obj[1];
 
@@ -128,7 +133,7 @@ socket.on("message", function(obj) {
 
   // const softVal = (thisValue + lastValue) / 2
   const roundValue = Math.round(thisValue * 100) / 100;
-  const normalizeMessage = rangeMap(roundValue, 0, 1, 100, 700);
+  fontWeightValue = rangeMap(roundValue, 0, 1, 100, 700);
 
   //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
@@ -136,20 +141,16 @@ socket.on("message", function(obj) {
 
 
 
-  if(!connectedToSocket) { removeFontWeightAnimation() }
-  // console.log('Connected To Socket', obj)
-
-  function animateFontWeight() {
-    resetVariableScroller.style.fontWeight = normalizeMessage;
-    neueOrnamentScroller.style.fontWeight = normalizeMessage;
+  if(!connectedToSocket) {
+    removeFontWeightAnimation()
+    requestAnimationFrame(fontWeightAnimationStep)
   }
-
-  requestAnimationFrame(animateFontWeight)
+  // console.log('Connected To Socket', obj)
 
 
   // lastValue = thisValue;
   connectedToSocket = true
-  //Marquee3k.refreshAll();
+  // Marquee3k.refreshAll();
 });
 
 socket.on("disconnect", function(obj) {
@@ -157,6 +158,26 @@ socket.on("disconnect", function(obj) {
   console.log('LOST connection to socket')
   addFontWeightAnimation()
 })
+
+function fontWeightAnimationStep() {
+  if (connectedToSocket){
+    try{
+    resetVariableScroller.style.fontWeight = fontWeightValue;
+    }catch(e){}
+    try{
+    neueOrnamentScroller.style.fontWeight = fontWeightValue;
+    }catch(e){}
+    requestAnimationFrame(fontWeightAnimationStep)
+  }
+}
+
+
+
+
+
+
+
+
 
 ////////// HELPER FUNCTION ////////
 
