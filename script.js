@@ -57,7 +57,6 @@ function styleSliderFactory(size) {
 
   stylesSlider.oninput = function (event) {
     const sliderValue = event.currentTarget.value
-    console.log(sliderValue)
     document.documentElement.style.setProperty(
         `--styles-size-${size}`,
         `${sliderValue}px`
