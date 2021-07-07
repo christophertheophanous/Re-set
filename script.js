@@ -1,84 +1,83 @@
-import smoothscroll from "smoothscroll-polyfill";
-import "smoothscroll-anchor-polyfill";
-import Marquee3k from "marquee3000";
+import smoothscroll from "smoothscroll-polyfill"
+import "smoothscroll-anchor-polyfill"
+import Marquee3k from "marquee3000"
 // import * as JZZ from "jzz";
 
 
 // Smoothscroll für Safari
-smoothscroll.polyfill();
+smoothscroll.polyfill()
 
 
 // Initialize Marquee scroller
 
 // Wir warten darauf, dass das dokument vollständig geladen ist:
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
 
   // Wir warten bis die Font geladen ist. Dann starten wir den Marquee. Ansonsten ist die breite falsch berechnet
-  document.fonts.ready.then(function() {
-    Marquee3k.init({ selector: "marquee3k" });
+  document.fonts.ready.then(function () {
+    Marquee3k.init({selector: "marquee3k"})
 
     // Zur sicherheit laden wir nach drei sekunden den Marquee nochmal neu falls sich was verschoben hat:
-    setTimeout(function() {
-      Marquee3k.refreshAll();
-    }, 3000);
-  });
-});
+    setTimeout(function () {
+      Marquee3k.refreshAll()
+    }, 3000)
+  })
+})
 
 //Popup für Chrome/Firefox ua.
 
-const wrongBrowserPopup = document.getElementById("wrong-browser");
+const wrongBrowserPopup = document.getElementById("wrong-browser")
 
-const currentBrowser = getcurrentBrowser();
-console.log("detected: " + currentBrowser);
+const currentBrowser = getcurrentBrowser()
+console.log("detected: " + currentBrowser)
 
 if (currentBrowser !== "Safari") {
   try {
-  wrongBrowserPopup.classList.remove("wrong-browser-hidden");
-  setTimeout(function(){ 
-    wrongBrowserPopup.classList.add("wrong-browser-hidden"); 
-  }, 10000);
-  } catch (e){}
+    wrongBrowserPopup.classList.remove("wrong-browser-hidden")
+    setTimeout(function () {
+      wrongBrowserPopup.classList.add("wrong-browser-hidden")
+    }, 10000)
+  } catch (e) {
+  }
 }
 
 // Styles Section --> makes slider interactive
 
-const styleSliderSizes = ["thin", "light", "regular", "medium", "bold"];
-const defaultSize = 68;
+const styleSliderSizes = ["thin", "light", "regular", "medium", "bold"]
+const defaultSize = 68
 
 function styleSliderFactory(size) {
-  const stylesSlider = document.getElementById(`styles-slider-${size}`);
+  const stylesSlider = document.getElementById(`styles-slider-${size}`)
   const stylesSliderOutput = document.getElementById(
-    `styles-slider-${size}-text`
-  );
+      `styles-slider-${size}-text`
+  )
 
-  stylesSlider.value = defaultSize;
-  stylesSliderOutput.innerHTML = "68px";
+  stylesSlider.value = defaultSize
+  stylesSliderOutput.innerHTML = "68px"
 
-  stylesSlider.oninput = function(event) {
-    const sliderValue = event.currentTarget.value;
-    console.log(sliderValue);
+  stylesSlider.oninput = function (event) {
+    const sliderValue = event.currentTarget.value
     document.documentElement.style.setProperty(
-      `--styles-size-${size}`,
-      `${sliderValue}px`
-    );
-    stylesSliderOutput.innerHTML = `${sliderValue}px`;
-  };
+        `--styles-size-${size}`,
+        `${sliderValue}px`
+    )
+    stylesSliderOutput.innerHTML = `${sliderValue}px`
+  }
 }
 
 try {
-styleSliderSizes.forEach(size => styleSliderFactory(size));
-} catch (e){}
-
-
+  styleSliderSizes.forEach(size => styleSliderFactory(size))
+} catch (e) {
+}
 
 
 // OSC Stuff
 
-localStorage.debug = false;
+localStorage.debug = false
 // '*';
 
-var socket = io("127.0.0.1:3030");
-socket.on("connect", function() {
+var socket = io("127.0.0.1:3030")
+socket.on("connect", function () {
   // sends to socket.io server the host/port of oscServer
   // and oscClient
   socket.emit("config", {
@@ -90,8 +89,8 @@ socket.on("connect", function() {
       port: 3334,
       host: "127.0.0.1"
     }
-  });
-});
+  })
+})
 
 // const status = document.getElementById("log");
 
@@ -99,23 +98,29 @@ socket.on("connect", function() {
 
 let connectedToSocket = false
 
-const resetVariableScroller = document.getElementById("reset-variable-scroller");
-const neueOrnamentScroller = document.getElementById("neue-ornament-scroller");
+const resetVariableScroller = document.getElementById("reset-variable-scroller")
+const neueOrnamentScroller = document.getElementById("neue-ornament-scroller")
 
-function addFontWeightAnimation () {
+function addFontWeightAnimation() {
   try {
-  resetVariableScroller.style.animationName = 'animateFontWeight'
-  neueOrnamentScroller.style.animationName = 'animateFontWeight'
-  console.log('add pulsing font Animation')
-  } catch(e){}
+    resetVariableScroller.style.animationName = 'animateFontWeight'
+    neueOrnamentScroller.style.animationName = 'animateFontWeight'
+    console.log('add pulsing font Animation')
+    resetVariableScroller.style.willChange = 'auto';
+    neueOrnamentScroller.style.willChange = 'auto';
+  } catch (e) {
+  }
 }
 
-function removeFontWeightAnimation () {
+function removeFontWeightAnimation() {
   try {
-  resetVariableScroller.style.animationName = ''
-  neueOrnamentScroller.style.animationName = ''
-  console.log('remove pulsing font Animation')
-  } catch(e){}
+    resetVariableScroller.style.animationName = ''
+    neueOrnamentScroller.style.animationName = ''
+    console.log('remove pulsing font Animation')
+    resetVariableScroller.style.willChange = 'transform, font-weight';
+    neueOrnamentScroller.style.willChange = 'transform, font-weight';
+  } catch (e) {
+  }
 }
 
 
@@ -123,26 +128,25 @@ let fontWeightValue
 
 addFontWeightAnimation()
 
-socket.on("message", function(obj) {
+socket.on("message", function (obj) {
 
-  const thisValue = obj[1];
+  const thisValue = obj[1]
 
   // const differenz = calcDiff(lastValue, thisValue)
   //const differenz = thisValue - lastValue
   //const ausschlag = 50 + (differenz * 3)
 
   // const softVal = (thisValue + lastValue) / 2
-  const roundValue = Math.round(thisValue * 100) / 100;
-  fontWeightValue = rangeMap(roundValue, 0, 1, 100, 700);
+  const roundValue = Math.round(thisValue * 100) / 100
+  fontWeightValue = rangeMap(roundValue, 0, 1, 100, 700)
 
   //console.log(thisValue, lastValue, differenz, ausschlag, normalizeMessage)
 
   // console.log(thisValue + " -> " + normalizeMessage);
 
 
-
-  if(!connectedToSocket) { 
-    removeFontWeightAnimation() 
+  if (!connectedToSocket) {
+    removeFontWeightAnimation()
     requestAnimationFrame(fontWeightAnimationStep)
   }
   // console.log('Connected To Socket', obj)
@@ -150,64 +154,59 @@ socket.on("message", function(obj) {
 
   // lastValue = thisValue;
   connectedToSocket = true
-  //Marquee3k.refreshAll();
-});
+  // Marquee3k.refreshAll();
+})
 
-socket.on("disconnect", function(obj) {
+socket.on("disconnect", function (obj) {
   connectedToSocket = false
   console.log('LOST connection to socket')
   addFontWeightAnimation()
 })
 
 function fontWeightAnimationStep() {
-  if (connectedToSocket){
-    try{
-    resetVariableScroller.style.fontWeight = fontWeightValue;
-    }catch(e){}
-    try{
-    neueOrnamentScroller.style.fontWeight = fontWeightValue;
-    }catch(e){}
+  if (connectedToSocket) {
+    try {
+      resetVariableScroller.style.fontWeight = fontWeightValue
+    } catch (e) {
+    }
+    try {
+      neueOrnamentScroller.style.fontWeight = fontWeightValue
+    } catch (e) {
+    }
     requestAnimationFrame(fontWeightAnimationStep)
   }
 }
 
 
-
-
-
-
-
-
-
 ////////// HELPER FUNCTION ////////
 
 const rangeMap = (value, x1, y1, x2, y2) =>
-  ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+    ((value - x1) * (y2 - x2)) / (y1 - x1) + x2
 
-const calcDiff = (a, b) => (a > b ? a - b : b - a);
+const calcDiff = (a, b) => (a > b ? a - b : b - a)
 
 // Get current Browser:
 
 function getcurrentBrowser() {
   if (
-    (navigator.userAgent.indexOf("Opera") ||
-      navigator.userAgent.indexOf("OPR")) != -1
+      (navigator.userAgent.indexOf("Opera") ||
+          navigator.userAgent.indexOf("OPR")) != -1
   ) {
-    return "Opera";
+    return "Opera"
   } else if (navigator.userAgent.indexOf("Chrome") != -1) {
-    return "Chrome";
+    return "Chrome"
   } else if (navigator.userAgent.indexOf("Safari") != -1) {
-    return "Safari";
+    return "Safari"
   } else if (navigator.userAgent.indexOf("Firefox") != -1) {
-    return "Firefox";
+    return "Firefox"
   } else if (
-    navigator.userAgent.indexOf("MSIE") != -1 ||
-    !!document.documentMode == true
+      navigator.userAgent.indexOf("MSIE") != -1 ||
+      !!document.documentMode == true
   ) {
     //IF IE > 10
-    return "IE";
+    return "IE"
   } else {
-    return "unknown";
+    return "unknown"
   }
 }
 
